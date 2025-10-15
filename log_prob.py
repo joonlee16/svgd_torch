@@ -25,9 +25,9 @@ def log_prob_gaussian_mix(dim, num_peaks, device="cpu", seed=None):
 
         log_probs = []
         for mu in mus:
-            diff = x - mu  # (n_particles, dim)
+            diff = x.to(mus[0].device) - mu  # (n_particles, dim)
             norm_term = -0.5 * (diff ** 2).sum(dim=1) / (sigma ** 2)
-            log_probs.append(norm_term - const_term)
+            log_probs.append(norm_term - const_term.to(mus[0].device))
 
         # Stack and apply logsumexp with equal weights
         stacked = torch.stack(log_probs, dim=1) + torch.log(torch.tensor(1.0 / num_peaks, device=device))

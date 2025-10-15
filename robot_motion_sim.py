@@ -8,7 +8,7 @@ from config import *
 
 
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-print(device)
+
 # ----------------------------
 # Double Integrator Rollout
 # ----------------------------
