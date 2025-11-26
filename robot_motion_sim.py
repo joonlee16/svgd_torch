@@ -25,8 +25,8 @@ def double_integrator_rollout(x0, u, dt=DT):
         ax, ay = u[:, t, 0], u[:, t, 1]
         px, py, vx, vy = x[:, 0], x[:, 1], x[:, 2], x[:, 3]
 
-        px_next = px + vx * dt
-        py_next = py + vy * dt
+        px_next = px + vx * dt + 1/2*ax*dt**2
+        py_next = py + vy * dt + 1/2*ay*dt**2
         vx_next = vx + ax * dt
         vy_next = vy + ay * dt
 
